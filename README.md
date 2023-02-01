@@ -1,70 +1,109 @@
-# Getting Started with Create React App
+## Web Apps
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+* Web Apps are of two types, based on how we get content:
 
-## Available Scripts
+* Multi-page application (MPA)
+* Single-page application (SPA)
 
-In the project directory, you can run:
+# Multi-page application (MPA)
 
-### `npm start`
+* Every URL is associated with corresponding resources (HTML, CSS, JS).
+The browser downloads these resources when you access them or navigate between URLs.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+#  Single-page application (SPA)
+ 
+* All URLs are associated with a single HTML page.
+On navigating we only get the additional content (Component - HTML, CSS, JS).
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+#  Advantages of using Single-page application (SPA)
 
-### `npm test`
+* Faster Page loading - since they load only necessary Component (HTML, CSS, JS) resources on subsequent requests.
+React is mainly used to build Single-page applications.
+------------------------------------------------------------------------
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+ # React Router
 
-### `npm run build`
+ * In React, we build Single-page applications using React Router.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* To implement routing, React Router provides various components:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+* BrowserRouter
+* Link
+* Route
+* Switch
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# BrowserRouter
 
-### `npm run eject`
+* To add routing wrap all the Components with BrowserRouter
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+# Syntax:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<BrowserRouter>
+  <Component 1>
+  <Component 2>
+  ... 
+</BrowserRouter>
+-----------------------------------------------------------------------
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+# Link
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Link Component creates hyperlinks that allows to navigate around in application.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# Syntax:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<Link to="Path"> Display Text</Link>
 
-### Code Splitting
+The to prop specifies absolute path.
+------------------------------------------------------------------------
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+# Route
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+The Route component renders specific UI component when path matches current URL.
 
-### Making a Progressive Web App
+<Route path="Path" component={Component} />
+------------------------------------------------------------------------
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+#  Exact
 
-### Advanced Configuration
+Renders the route if path matches exactly the current url
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+<Route exact path="Path1" component={Component1} />
+------------------------------------------------------------------------
 
-### Deployment
+#  Switch
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+The Switch component will only render the first route that matches the path. If no path matches, it renders the Not Found component.
 
-### `npm run build` fails to minify
+<Switch>
+  <Route path="Path1" component={Component1} />
+  <Route path="Path2" component={Component2} />
+ <Route component={NotFound} />
+</Switch>
+------------------------------------------------------------------------
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# react-router-dom
+
+
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import Header from './components/Header'
+import Home from './components/Home'
+import About from './components/About'
+import Contact from './components/Contact'
+import NotFound from './components/NotFound'
+
+const App = () => (
+  <BrowserRouter>
+    <Header />
+    <Switch>
+      <Route exact path="/" component={Home} />
+      <Route exact path="/about" component={About} />
+      <Route exact path="/contact" component={Contact} />
+      <Route component={NotFound} />
+    </Switch>
+  </BrowserRouter>
+)
+
+export default App
+------------------------------------------------------------------------
